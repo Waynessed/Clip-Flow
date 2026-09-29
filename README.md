@@ -2,6 +2,21 @@
 
 A local video-processing workspace built with Go, PostgreSQL, MinIO, FFmpeg, React and TypeScript. Upload a short MP4 and get a JPEG thumbnail, an H.264/AAC preview up to 480 pixels high, real metadata and a visible attempt history.
 
+## Public walkthrough
+
+**[Explore ClipFlow in your browser](https://waynessed.github.io/Clip-Flow/)**
+
+The public walkthrough plays real synthetic inputs and generated previews,
+shows recorded processing/recovery attempts, and links to implementation and
+verification evidence. It is read-only: the examples are recorded runs from
+29 September 2026, and selecting one does not submit a job. Uploads and workers
+remain in the local application below.
+
+GitHub Pages serves a separate static build over HTTPS. Deployment status is
+available in the [Public walkthrough workflow](https://github.com/Waynessed/Clip-Flow/actions/workflows/pages.yml).
+See [public walkthrough operations](docs/public-walkthrough.md) for build,
+verification, media provenance and publishing instructions.
+
 ## Start the demo
 
 Requirements: Docker Desktop running Linux containers and PowerShell. The first build needs internet; Go, FFmpeg and Node for the app are inside containers. Node 24 is needed on the host only to run Playwright and benchmarks.

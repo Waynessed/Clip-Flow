@@ -1,0 +1,20 @@
+{
+  "input": {
+    "duration": 3,
+    "width": 960,
+    "height": 540,
+    "size": 547291,
+    "audio": true
+  },
+  "preview": {
+    "duration": 3.019,
+    "width": 854,
+    "height": 480,
+    "size": 196753,
+    "audio": true
+  },
+  "sizes": {
+    "preview": 196753,
+    "thumbnail": 19418
+  }
+}

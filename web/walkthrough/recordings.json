@@ -1,0 +1,238 @@
+{
+  "implementation_revision": "d1434ab135940b6a8cdf394e747b8b53bd235400",
+  "recordings": [
+    {
+      "slug": "processed",
+      "title": "A processed clip",
+      "description": "A real MP4 became a thumbnail, a smaller preview and metadata.",
+      "evidence": "final-demo.json",
+      "id": "fad3a48b-ee29-4c19-ba78-0f406dc7f2d8",
+      "state": "succeeded",
+      "created_at": "2026-09-29T06:28:28.192707Z",
+      "completed_at": "2026-09-29T06:28:33.365902Z",
+      "metadata": {
+        "input": {
+          "duration": 3,
+          "width": 960,
+          "height": 540,
+          "size": 547291,
+          "audio": true
+        },
+        "preview": {
+          "duration": 3.019,
+          "width": 854,
+          "height": 480,
+          "size": 196753,
+          "audio": true
+        },
+        "sizes": {
+          "preview": 196753,
+          "thumbnail": 19418
+        }
+      },
+      "attempts": [
+        {
+          "number": 1,
+          "worker": "bc9e6cb439a8-e89b0e55-b62f-4c62-b347-3b9e9ea4f00d",
+          "started_at": "2026-09-29T06:28:28.5382Z",
+          "ended_at": "2026-09-29T06:28:33.367326Z",
+          "outcome": "succeeded",
+          "error_category": null
+        }
+      ],
+      "rejection": null
+    },
+    {
+      "slug": "recovered",
+      "title": "Recovery after worker termination",
+      "description": "The first worker was killed. A different worker recovered the expired job.",
+      "evidence": "final-recovery-kill.json",
+      "id": "83f0b9b3-01bb-46ec-a382-ad6dfcb9a5e5",
+      "state": "succeeded",
+      "created_at": "2026-09-29T06:25:59.720255Z",
+      "completed_at": "2026-09-29T06:26:13.170677Z",
+      "metadata": {
+        "input": {
+          "duration": 3,
+          "width": 960,
+          "height": 540,
+          "size": 547291,
+          "audio": true
+        },
+        "preview": {
+          "duration": 3.019,
+          "width": 854,
+          "height": 480,
+          "size": 196753,
+          "audio": true
+        },
+        "sizes": {
+          "preview": 196753,
+          "thumbnail": 19418
+        }
+      },
+      "attempts": [
+        {
+          "number": 1,
+          "worker": "1890d48b9505-0b33e1ad-c4d5-4bb9-8825-0f343e0d68c8",
+          "started_at": "2026-09-29T06:25:59.896105Z",
+          "ended_at": "2026-09-29T06:26:10.328349Z",
+          "outcome": "expired",
+          "error_category": "lease_expired"
+        },
+        {
+          "number": 2,
+          "worker": "bc9e6cb439a8-639a832b-092a-4d8e-8bb5-df48a43b9953",
+          "started_at": "2026-09-29T06:26:10.330722Z",
+          "ended_at": "2026-09-29T06:26:13.171816Z",
+          "outcome": "succeeded",
+          "error_category": null
+        }
+      ],
+      "rejection": null
+    },
+    {
+      "slug": "stale",
+      "title": "An obsolete result was rejected",
+      "description": "A replacement worker finished; the old attempt was later refused publication.",
+      "evidence": "final-recovery-stale.json",
+      "id": "1fa6bba1-81a4-41fe-9b29-9db482f5dea2",
+      "state": "succeeded",
+      "created_at": "2026-09-29T06:26:21.779215Z",
+      "completed_at": "2026-09-29T06:26:34.093593Z",
+      "metadata": {
+        "input": {
+          "duration": 3,
+          "width": 960,
+          "height": 540,
+          "size": 547291,
+          "audio": true
+        },
+        "preview": {
+          "duration": 3.019,
+          "width": 854,
+          "height": 480,
+          "size": 196753,
+          "audio": true
+        },
+        "sizes": {
+          "preview": 196753,
+          "thumbnail": 19418
+        }
+      },
+      "attempts": [
+        {
+          "number": 1,
+          "worker": "99b614650940-8a76fb41-7c98-42c2-8985-ed68cdf241c9",
+          "started_at": "2026-09-29T06:26:22.066377Z",
+          "ended_at": "2026-09-29T06:26:30.307875Z",
+          "outcome": "expired",
+          "error_category": "lease_expired"
+        },
+        {
+          "number": 2,
+          "worker": "bc9e6cb439a8-e89b0e55-b62f-4c62-b347-3b9e9ea4f00d",
+          "started_at": "2026-09-29T06:26:30.312608Z",
+          "ended_at": "2026-09-29T06:26:34.094293Z",
+          "outcome": "succeeded",
+          "error_category": null
+        }
+      ],
+      "rejection": {
+        "time": "2026-09-29T06:26:34.398037591Z",
+        "category": "stale_publication"
+      }
+    },
+    {
+      "slug": "outage",
+      "title": "A bounded storage failure",
+      "description": "A real storage outage ended in failure after three attempts.",
+      "evidence": "reliability.json",
+      "id": "e87273e4-1c4d-4f14-b58a-f21ac540ad00",
+      "state": "failed",
+      "created_at": "2026-09-29T06:01:35.962636Z",
+      "completed_at": "2026-09-29T06:02:06.076372Z",
+      "metadata": null,
+      "attempts": [
+        {
+          "number": 1,
+          "worker": "578eea3bd8a7-f9b9636c-63ca-41ab-89fe-52bf6055624c",
+          "started_at": "2026-09-29T06:01:38.145234Z",
+          "ended_at": "2026-09-29T06:01:40.740112Z",
+          "outcome": "queued",
+          "error_category": "storage_unavailable"
+        },
+        {
+          "number": 2,
+          "worker": "578eea3bd8a7-f9b9636c-63ca-41ab-89fe-52bf6055624c",
+          "started_at": "2026-09-29T06:01:45.767036Z",
+          "ended_at": "2026-09-29T06:01:48.301882Z",
+          "outcome": "queued",
+          "error_category": "storage_unavailable"
+        },
+        {
+          "number": 3,
+          "worker": "578eea3bd8a7-f9b9636c-63ca-41ab-89fe-52bf6055624c",
+          "started_at": "2026-09-29T06:02:03.417855Z",
+          "ended_at": "2026-09-29T06:02:06.077036Z",
+          "outcome": "failed",
+          "error_category": "storage_unavailable"
+        }
+      ],
+      "rejection": null
+    }
+  ],
+  "benchmarks": [
+    {
+      "workers": 1,
+      "runs": 3,
+      "failed_runs": 0,
+      "completed": 300,
+      "total_elapsed_seconds": 388.1943728,
+      "jobs_per_minute": 46.36852376341299,
+      "median_queue_wait_seconds": 66.063,
+      "p95_queue_wait_seconds": 117.297,
+      "median_e2e_seconds": 67.504,
+      "p95_e2e_seconds": 118.612,
+      "preview_reduction_percent": 62.357523142323664,
+      "combined_media_reduction_percent": 46.211230280784235,
+      "mean_total_cpu_percent": 97.6589285714286,
+      "peak_total_cpu_percent": 131.28,
+      "peak_total_memory_mib": 71.54
+    },
+    {
+      "workers": 2,
+      "runs": 3,
+      "failed_runs": 0,
+      "completed": 300,
+      "total_elapsed_seconds": 124.02501109999994,
+      "jobs_per_minute": 145.13201684365748,
+      "median_queue_wait_seconds": 23.961,
+      "p95_queue_wait_seconds": 39.181,
+      "median_e2e_seconds": 24.765,
+      "p95_e2e_seconds": 39.754,
+      "preview_reduction_percent": 62.357523142323664,
+      "combined_media_reduction_percent": 46.211230280784235,
+      "mean_total_cpu_percent": 186.89632653061224,
+      "peak_total_cpu_percent": 203.66000000000003,
+      "peak_total_memory_mib": 79.78
+    },
+    {
+      "workers": 4,
+      "runs": 3,
+      "failed_runs": 0,
+      "completed": 300,
+      "total_elapsed_seconds": 189.36543089999992,
+      "jobs_per_minute": 95.05430803526879,
+      "median_queue_wait_seconds": 27.924,
+      "p95_queue_wait_seconds": 75.745,
+      "median_e2e_seconds": 29.424,
+      "p95_e2e_seconds": 78.627,
+      "preview_reduction_percent": 62.357523142323664,
+      "combined_media_reduction_percent": 46.211230280784235,
+      "mean_total_cpu_percent": 402.0235185185183,
+      "peak_total_cpu_percent": 484.40999999999997,
+      "peak_total_memory_mib": 193.74
+    }
+  ]
+}

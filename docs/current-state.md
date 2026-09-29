@@ -2,9 +2,19 @@
 
 ## Delivered
 
-CF-00–CF-05 implemented and verified locally. First demo and full kill/recovery/obsolete-publication demo work. The app is running at http://localhost:5173 with one normal worker; API http://localhost:8080. PostgreSQL and MinIO remain internal. Nine measured runs completed 900 unique jobs successfully, with 100 distinct fixtures and zero failed runs.
+CF-06 public read-only walkthrough is implemented and verified locally; its
+first Pages deployment is pending. It uses actual exported synthetic media
+and four archived scenarios, with no public API/upload/storage credentials.
+See public-walkthrough.md. Local services were stopped when CF-06 began;
+DB, MinIO and API were started temporarily to export the preserved examples,
+then stopped with data volumes retained. No local services are left running.
+
+CF-00–CF-05 implemented and verified locally. First demo and full kill/recovery/obsolete-publication demo work. The local app starts at http://localhost:5173; API http://localhost:8080. PostgreSQL and MinIO remain internal. Nine measured runs completed 900 unique jobs successfully, with 100 distinct fixtures and zero failed runs.
 
 ## Revisions
+
+- b7bc6cf6b0e9f1aaa078039ddc755c94b7194874: final CF-05 documentation checkpoint.
+- CF-06 implementation revision will be recorded after its verified commit.
 
 - e82c287: initial code and reproducible environment.
 - 5bdefd5: first verified local/browser demo evidence.

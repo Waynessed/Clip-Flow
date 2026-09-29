@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "tsc -b && vite build",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "build:walkthrough": "node ../scripts/walkthrough-data.mjs && tsc -b && vite build --config vite.walkthrough.config.ts",
+    "preview:walkthrough": "vite preview --config vite.walkthrough.config.ts",
+    "test:walkthrough": "playwright test --config playwright.walkthrough.config.ts"
   },
   "dependencies": {
     "react": "19.3.0",

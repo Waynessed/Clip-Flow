@@ -87,3 +87,70 @@ Completed CF-05 implementation commit: d1434ab135940b6a8cdf394e747b8b53bd235400,
 GitHub Actions run 36531496192 for d1434ab135940b6a8cdf394e747b8b53bd235400 completed successfully at 06:35:36 UTC. Clean-checkout startup, real-service tests including the AAC boundary regression, Go vet, frontend build, browser upload/playback and evidence preservation passed. Exact API result is checked in as docs/evidence/ci-final.json. URL: https://github.com/Waynessed/Clip-Flow/actions/runs/36531496192.
 
 The following commit is documentation-only: it records the actual final implementation SHA/CI result and the fixed benchmark run-order limitation. Its [skip ci] marker avoids rebuilding unchanged application code solely for bookkeeping. App/source implementation remains exactly d1434ab; repository HEAD may be this final records commit. Use git rev-parse HEAD and git log for the precise documentation revision. No required work remains; normal app services were left running.
+
+## CF-06 — public read-only walkthrough — 2026-09-29 UTC
+
+Goal: the user requested a live public website that recruiters can explore,
+limited to a read-only walkthrough. This explicitly extends the handoff's
+original local-only scope. Starting revision b7bc6cf; working tree was clean.
+The repository is public, its default branch is master, and the existing user
+has admin/push access. Pages was not configured. No subagents were used.
+
+Actual changes: separate React entry `web/walkthrough/main.tsx` (`Walkthrough`),
+responsive media-review layout, scenario selection, original/preview playback,
+output links, real metadata and UTC attempt history, recorded obsolete-publication
+rejection, selectable implementation stages and benchmark evidence/limits.
+`vite.walkthrough.config.ts` builds only that entry and reviewed static assets
+under `/Clip-Flow/`. The public app never calls the local API, submits uploads,
+polls jobs, or simulates progress. The original upload application's entry and
+Go runtime are unchanged.
+
+`scripts/walkthrough-data.mjs` exports three fixed synthetic successful jobs,
+compares local API manifests to the checked-in final evidence, verifies output
+sizes, omits internal object keys from public metadata, and records SHA-256 hashes
+for ten static assets. A fourth failure scenario is derived from the recorded
+storage outage without publishing raw infrastructure error messages. The input
+hash `da8bc7e3d1288b9b388bb2affeada6301823a8247889f38b229ba5b73f8fb3f2`
+was read from the preserved job in PostgreSQL and matched `.artifacts/demo.mp4`;
+export now asserts that exact approved fixture hash. Ordinary builds recheck
+asset hashes and regenerate recordings entirely offline from the evidence.
+No arbitrary local jobs or user-provided media were enumerated/exported.
+
+Flow: recorded JSON plus approved exported media → verified public recordings →
+React static build → Pages artifact → HTTPS hosting. Visitor selection changes
+browser state; media requests retrieve static files. No public backend, DB,
+storage credentials, account data or processing workload is provisioned. This
+fulfills read-only scope without requiring public upload quotas/authentication.
+All examples retain clear recorded-run labels and source links to d1434ab.
+
+Executed: existing containers were initially stopped. Started only DB/MinIO/API
+to export preserved outputs, then used Compose down to stop those temporary
+services while retaining volumes. No new jobs or recovery demos were run.
+`node scripts/walkthrough-data.mjs --export` prepared four scenarios and verified
+ten assets; `npm run build:walkthrough` passed; the original `npm run build`
+also passed. Two Playwright checks passed: actual preview playback and original
+dimensions, metadata and scenario outcomes, no mutation/API requests, mobile
+width and keyboard focus. Evidence: docs/evidence/walkthrough-playwright-local.json.
+First test iteration failed on an overly exact accessible-name locator for the
+numbered Publish button; corrected it to tolerate JSX whitespace. On Windows
+the successful run's temporary server cleanup stalled in the sandbox; only its
+known Vite PID was terminated, allowing exit code 0 and the final two-pass report.
+Both mobile/desktop screenshots were inspected locally. New files were formatted
+with Prettier 3.6.2. Full backend tests were not rerun locally because no Go or
+backend configuration changed; existing CI still covers the local application.
+
+Deployment: enabled Pages via authenticated API with build_type=workflow;
+configuration returned https://waynessed.github.io/Clip-Flow/ and enforced HTTPS.
+`.github/workflows/pages.yml` verifies hashes/build/browser behavior before
+uploading only the static walkthrough, then deploys with short-lived workflow
+identity and job-scoped permissions. Pull requests verify without publishing.
+Actual initial deployment and remote checks are pending; no live success is
+claimed at this checkpoint. README, current-state, decisions, walkthrough and
+demo guide describe the actual public/local distinction and operating commands.
+Commit hash will be recorded after the verified implementation commit.
+
+Limits: public runs are historical examples, no live workers or upload service.
+Synthetic clips, uncontrolled laptop benchmarks and recorded CI evidence retain
+their original limits. GitHub Pages handles hosting/access logs and HTTPS. CSP is
+a meta policy, not a claim of arbitrary server-header control. A custom domain,
+public authentication and runtime upload processing are outside this request.

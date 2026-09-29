@@ -1,5 +1,17 @@
 # Demonstration guide
 
+## Public read-only walkthrough
+
+https://waynessed.github.io/Clip-Flow/ (initial deployment status is recorded in
+current-state.md). Select one of the four recorded runs, play the actual preview
+or original input, open metadata/thumbnail, inspect attempts and follow the
+processing stages. These are recorded examples, not newly submitted jobs.
+
+For local preview, run `npm run build:walkthrough` then
+`npm run preview:walkthrough` in web; open http://127.0.0.1:4173/Clip-Flow/.
+Ctrl+C stops that preview. The hosted copy is independent of Docker and the
+local computer. See public-walkthrough.md for unpublishing and rollback.
+
 ## First working local demo
 
 PowerShell, repository root, Docker Desktop Linux engine running:

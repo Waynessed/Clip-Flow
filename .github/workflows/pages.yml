@@ -1,0 +1,73 @@
+name: Public walkthrough
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'web/**'
+      - 'scripts/walkthrough-data.mjs'
+      - '.github/workflows/pages.yml'
+      - 'docs/evidence/**'
+      - 'docs/benchmarks/**'
+  pull_request:
+    paths:
+      - 'web/**'
+      - 'scripts/walkthrough-data.mjs'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: public-walkthrough-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.21.0
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - name: Install pinned dependencies
+        working-directory: web
+        run: npm ci
+      - name: Verify assets and build read-only site
+        working-directory: web
+        run: npm run build:walkthrough
+      - name: Verify playback, scenarios and read-only requests
+        working-directory: web
+        run: |
+          npx playwright install --with-deps chromium
+          npm run test:walkthrough
+      - name: Preserve walkthrough checks
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: walkthrough-verification
+          path: |
+            .artifacts/walkthrough-*
+            web/test-results/
+      - name: Configure Pages
+        if: github.event_name != 'pull_request'
+        uses: actions/configure-pages@v5
+      - name: Upload only static walkthrough
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: web/dist-walkthrough
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy public walkthrough
+        id: deployment
+        uses: actions/deploy-pages@v4

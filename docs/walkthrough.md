@@ -1,8 +1,16 @@
 # Implementation walkthrough
 
-Code basis: reliability checkpoint `721e75c`; earlier upload/processing code is in `e82c287`, and the first-demo evidence checkpoint is `5bdefd5`. Read the implementation log and `git log` for later packaging/benchmark changes. Paths/function names below describe actual code.
+Local application code basis: final CF-05 implementation `d1434ab`; reliability checkpoint `721e75c`; earlier upload/processing code is in `e82c287`, and the first-demo evidence checkpoint is `5bdefd5`. Read the implementation log and `git log` for later changes. Paths/function names below describe actual code.
 
 ## 1. Browser to durable job
+
+This flow belongs to the local upload application. The public CF-06 walkthrough
+is a separate entry (`web/walkthrough/main.tsx`, `Walkthrough`) with bundled,
+recorded data and static media. `scripts/walkthrough-data.mjs` builds that data
+from explicit evidence IDs, verifying the exported media hashes. The public
+entry never calls these API routes and has no upload form. Selecting a scenario
+changes React state; playing a clip requests a static exported MP4. See
+public-walkthrough.md for its deployment/operations flow.
 
 `web/src/main.tsx` uses a real multipart file and request key. `request<T>` parses the JSON error envelope. `App.upload` submits the file and selects the returned job. The refresh effect polls the list and selected detail every second; outputs appear only on succeeded jobs.
 
