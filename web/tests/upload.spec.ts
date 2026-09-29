@@ -10,6 +10,9 @@ test('real upload opens a playable preview and valid generated outputs',async({p
  await expect.poll(()=>video.evaluate((el:HTMLVideoElement)=>el.readyState)).toBeGreaterThanOrEqual(1);
  const info=await video.evaluate((el:HTMLVideoElement)=>({duration:el.duration,width:el.videoWidth,height:el.videoHeight}));
  expect(info.duration).toBeGreaterThan(0);expect(info.height).toBeLessThanOrEqual(480);expect(info.width%2).toBe(0);
+ await video.evaluate(async(el:HTMLVideoElement)=>{el.muted=true;await el.play()});
+ await expect.poll(()=>video.evaluate((el:HTMLVideoElement)=>el.currentTime)).toBeGreaterThan(.2);
+ await video.evaluate((el:HTMLVideoElement)=>el.pause());
  const metadataLink=await page.getByRole('link',{name:'View metadata'}).getAttribute('href');
  const metadata=await page.request.get(metadataLink!);expect(metadata.ok()).toBeTruthy();expect((await metadata.json()).preview.height).toBe(info.height);
  await page.screenshot({path:'../.artifacts/first-demo.png',fullPage:true});

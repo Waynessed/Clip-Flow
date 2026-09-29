@@ -1,0 +1,40 @@
+name: ClipFlow verification
+on: [push, pull_request]
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.21.0
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - name: Start real services
+        run: docker compose up -d --build --wait --wait-timeout 180
+      - name: Go integration and cleanup tests
+        run: |
+          mkdir -p .artifacts
+          set -o pipefail
+          docker compose --profile test run --build --rm verify test -count=1 -v ./... | tee .artifacts/go-tests.log
+          docker compose --profile test run --rm verify vet ./...
+      - name: Generate browser fixture
+        run: |
+          docker compose exec -T api ffmpeg -nostdin -v error -y -f lavfi -i testsrc2=size=960x540:rate=24 -t 3 -c:v libx264 -threads 1 -pix_fmt yuv420p /tmp/demo.mp4
+          docker cp "$(docker compose ps -q api):/tmp/demo.mp4" .artifacts/demo.mp4
+      - name: Browser upload-to-preview
+        working-directory: web
+        run: |
+          npm ci
+          npm run build
+          npx playwright install --with-deps chromium
+          npm run test:e2e
+      - name: Preserve evidence and service logs
+        if: always()
+        run: docker compose logs --no-color > .artifacts/services.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: verification-evidence
+          path: .artifacts

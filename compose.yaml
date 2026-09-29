@@ -1,6 +1,8 @@
 name: clipflow
 x-app: &app
-  build: .
+  build:
+    context: .
+    target: runtime
   environment: &env
     DATABASE_URL: postgres://clipflow:local-demo-password@db:5432/clipflow?sslmode=disable
     S3_ENDPOINT: http://minio:9000
@@ -69,6 +71,20 @@ services:
     <<: *app
     profiles: [tools]
     restart: 'no'
+  verify:
+    <<: *app
+    build:
+      context: .
+      target: verify
+    profiles: [test]
+    volumes:
+      - .:/src
+      - test-cache:/root/.cache/go-build
+    environment:
+      <<: *env
+      TEST_DATABASE_URL: postgres://clipflow:local-demo-password@db:5432/clipflow?sslmode=disable
+    restart: 'no'
 volumes:
   database:
   objects:
+  test-cache:

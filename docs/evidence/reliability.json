@@ -1,0 +1,104 @@
+{
+  "started_at": "2026-09-29T06:01:26.123Z",
+  "restart": {
+    "id": "2a49c723-9ae5-45d5-aa45-28bc6824bc66",
+    "filename": "reliability.mp4",
+    "state": "succeeded",
+    "attempt_count": 1,
+    "created_at": "2026-09-29T06:01:27.408033Z",
+    "updated_at": "2026-09-29T06:01:34.13016Z",
+    "completed_at": "2026-09-29T06:01:34.13016Z",
+    "error_category": null,
+    "error_message": null,
+    "metadata": {
+      "objects": {
+        "metadata": "attempts/2a49c723-9ae5-45d5-aa45-28bc6824bc66/bf152464-033f-4033-a4f8-02fa4d1e443d/metadata.json",
+        "preview": "attempts/2a49c723-9ae5-45d5-aa45-28bc6824bc66/bf152464-033f-4033-a4f8-02fa4d1e443d/preview.mp4",
+        "thumbnail": "attempts/2a49c723-9ae5-45d5-aa45-28bc6824bc66/bf152464-033f-4033-a4f8-02fa4d1e443d/thumbnail.jpg"
+      },
+      "input": {
+        "duration": 3,
+        "width": 960,
+        "height": 540,
+        "size": 547291,
+        "audio": true
+      },
+      "preview": {
+        "duration": 3.019,
+        "width": 854,
+        "height": 480,
+        "size": 196753,
+        "audio": true
+      },
+      "sizes": {
+        "preview": 196753,
+        "thumbnail": 19418
+      }
+    },
+    "outputs": {
+      "metadata": "/v1/jobs/2a49c723-9ae5-45d5-aa45-28bc6824bc66/outputs/metadata",
+      "preview": "/v1/jobs/2a49c723-9ae5-45d5-aa45-28bc6824bc66/outputs/preview",
+      "thumbnail": "/v1/jobs/2a49c723-9ae5-45d5-aa45-28bc6824bc66/outputs/thumbnail"
+    },
+    "attempts": [
+      {
+        "number": 1,
+        "token": "bf152464-033f-4033-a4f8-02fa4d1e443d",
+        "worker": "578eea3bd8a7-74adb97e-39e5-4a80-ab93-4bec6f7b3677",
+        "started_at": "2026-09-29T06:01:30.619825Z",
+        "ended_at": "2026-09-29T06:01:34.13193Z",
+        "outcome": "succeeded",
+        "error_category": null,
+        "error_message": null,
+        "output_prefix": "attempts/2a49c723-9ae5-45d5-aa45-28bc6824bc66/bf152464-033f-4033-a4f8-02fa4d1e443d/"
+      }
+    ]
+  },
+  "storage_interruption": {
+    "id": "e87273e4-1c4d-4f14-b58a-f21ac540ad00",
+    "filename": "reliability.mp4",
+    "state": "failed",
+    "attempt_count": 3,
+    "created_at": "2026-09-29T06:01:35.962636Z",
+    "updated_at": "2026-09-29T06:02:06.076372Z",
+    "completed_at": "2026-09-29T06:02:06.076372Z",
+    "error_category": "storage_unavailable",
+    "error_message": "operation error S3: GetObject, https response error StatusCode: 0, RequestID: , HostID: , request send failed, Get \"http://minio:9000/clips/inputs/e87273e4-1c4d-4f14-b58a-f21ac540ad00.mp4?x-id=GetObject\": dial tcp: lookup minio on 127.0.0.11:53: no such host",
+    "attempts": [
+      {
+        "number": 1,
+        "token": "7b22657d-20c4-48f4-98d3-86e8852c5138",
+        "worker": "578eea3bd8a7-f9b9636c-63ca-41ab-89fe-52bf6055624c",
+        "started_at": "2026-09-29T06:01:38.145234Z",
+        "ended_at": "2026-09-29T06:01:40.740112Z",
+        "outcome": "queued",
+        "error_category": "storage_unavailable",
+        "error_message": "operation error S3: GetObject, https response error StatusCode: 0, RequestID: , HostID: , request send failed, Get \"http://minio:9000/clips/inputs/e87273e4-1c4d-4f14-b58a-f21ac540ad00.mp4?x-id=GetObject\": dial tcp: lookup minio on 127.0.0.11:53: no such host",
+        "output_prefix": "attempts/e87273e4-1c4d-4f14-b58a-f21ac540ad00/7b22657d-20c4-48f4-98d3-86e8852c5138/"
+      },
+      {
+        "number": 2,
+        "token": "25d53169-ef9b-47ab-8fe0-c727ce381c47",
+        "worker": "578eea3bd8a7-f9b9636c-63ca-41ab-89fe-52bf6055624c",
+        "started_at": "2026-09-29T06:01:45.767036Z",
+        "ended_at": "2026-09-29T06:01:48.301882Z",
+        "outcome": "queued",
+        "error_category": "storage_unavailable",
+        "error_message": "operation error S3: GetObject, https response error StatusCode: 0, RequestID: , HostID: , request send failed, Get \"http://minio:9000/clips/inputs/e87273e4-1c4d-4f14-b58a-f21ac540ad00.mp4?x-id=GetObject\": dial tcp: lookup minio on 127.0.0.11:53: no such host",
+        "output_prefix": "attempts/e87273e4-1c4d-4f14-b58a-f21ac540ad00/25d53169-ef9b-47ab-8fe0-c727ce381c47/"
+      },
+      {
+        "number": 3,
+        "token": "a7b6753f-b008-4436-a7f2-3695ead2d4d9",
+        "worker": "578eea3bd8a7-f9b9636c-63ca-41ab-89fe-52bf6055624c",
+        "started_at": "2026-09-29T06:02:03.417855Z",
+        "ended_at": "2026-09-29T06:02:06.077036Z",
+        "outcome": "failed",
+        "error_category": "storage_unavailable",
+        "error_message": "operation error S3: GetObject, https response error StatusCode: 0, RequestID: , HostID: , request send failed, Get \"http://minio:9000/clips/inputs/e87273e4-1c4d-4f14-b58a-f21ac540ad00.mp4?x-id=GetObject\": dial tcp: lookup minio on 127.0.0.11:53: no such host",
+        "output_prefix": "attempts/e87273e4-1c4d-4f14-b58a-f21ac540ad00/a7b6753f-b008-4436-a7f2-3695ead2d4d9/"
+      }
+    ]
+  },
+  "ended_at": "2026-09-29T06:02:22.424Z"
+}

@@ -1,0 +1,70 @@
+ Container clipflow-db-1 Running 
+ Container clipflow-minio-1 Running 
+ Volume clipflow_test-cache Creating 
+ Volume clipflow_test-cache Creating 
+ Volume clipflow_test-cache Created 
+ Volume clipflow_test-cache Created 
+ Container clipflow-db-1 Waiting 
+ Container clipflow-minio-1 Waiting 
+ Container clipflow-minio-1 Healthy 
+ Container clipflow-db-1 Healthy 
+ Container clipflow-verify-run-9e43ce71bf32 Creating 
+ Container clipflow-verify-run-9e43ce71bf32 Created 
+?   	clipflow/cmd/api	[no test files]
+?   	clipflow/cmd/cleanup	[no test files]
+?   	clipflow/cmd/worker	[no test files]
+=== RUN   TestSweepPreservesReferencesAgeAndUnknownNamespaces
+--- PASS: TestSweepPreservesReferencesAgeAndUnknownNamespaces (0.00s)
+=== RUN   TestSweepRefusesDeletionWhenDatabaseUnavailable
+--- PASS: TestSweepRefusesDeletionWhenDatabaseUnavailable (0.00s)
+PASS
+ok  	clipflow/internal/cleanup	0.013s
+?   	clipflow/internal/config	[no test files]
+?   	clipflow/internal/httpapi	[no test files]
+=== RUN   TestRealServiceScenarios
+=== RUN   TestRealServiceScenarios/ten_duplicate_and_concurrent_uploads
+=== RUN   TestRealServiceScenarios/http_contract_and_bounds
+2026/09/29 06:04:35 INFO request method=POST path=/v1/jobs duration_ms=0
+2026/09/29 06:04:35 INFO request method=POST path=/v1/jobs duration_ms=0
+2026/09/29 06:04:35 INFO request method=POST path=/v1/jobs duration_ms=78
+2026/09/29 06:04:35 INFO request method=POST path=/v1/jobs duration_ms=49
+2026/09/29 06:04:35 INFO request method=POST path=/v1/jobs duration_ms=98
+2026/09/29 06:04:35 INFO request method=POST path=/v1/jobs duration_ms=116
+=== RUN   TestRealServiceScenarios/concurrent_claims_and_stale_publication
+=== RUN   TestRealServiceScenarios/retry_delays_exhaustion_and_corrupt_worker_input
+2026/09/29 06:04:35 INFO claimed job=d29e247b-256f-4b20-8f11-47dc3867f842 attempt=1 token=63cad52f-5127-43bd-ae35-d2d7611b5970 worker=test
+2026/09/29 06:04:35 WARN attempt_failed job=d29e247b-256f-4b20-8f11-47dc3867f842 attempt=1 token=63cad52f-5127-43bd-ae35-d2d7611b5970 worker=test category=storage_unavailable error="operation error S3: GetObject, https response error StatusCode: 404, RequestID: 18D9B57D2760B06E, HostID: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, NoSuchKey: "
+2026/09/29 06:04:36 INFO claimed job=d29e247b-256f-4b20-8f11-47dc3867f842 attempt=2 token=8f4e0abd-f288-4c27-a87f-178f13b6adb2 worker=test
+2026/09/29 06:04:36 WARN attempt_failed job=d29e247b-256f-4b20-8f11-47dc3867f842 attempt=2 token=8f4e0abd-f288-4c27-a87f-178f13b6adb2 worker=test category=storage_unavailable error="operation error S3: GetObject, https response error StatusCode: 404, RequestID: 18D9B57D289A476D, HostID: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, NoSuchKey: "
+2026/09/29 06:04:36 INFO claimed job=d29e247b-256f-4b20-8f11-47dc3867f842 attempt=3 token=640426c7-9711-4049-a17f-ccc744d40ae5 worker=test
+2026/09/29 06:04:36 WARN attempt_failed job=d29e247b-256f-4b20-8f11-47dc3867f842 attempt=3 token=640426c7-9711-4049-a17f-ccc744d40ae5 worker=test category=storage_unavailable error="operation error S3: GetObject, https response error StatusCode: 404, RequestID: 18D9B57D299FF5CC, HostID: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, NoSuchKey: "
+2026/09/29 06:04:36 INFO claimed job=0385b070-ac6f-4dd8-bace-7ef666f21216 attempt=1 token=ddb21894-3d2a-4da7-9d35-d52086bc18f7 worker=test
+2026/09/29 06:04:36 WARN attempt_failed job=0385b070-ac6f-4dd8-bace-7ef666f21216 attempt=1 token=ddb21894-3d2a-4da7-9d35-d52086bc18f7 worker=test category=invalid_media error="cannot inspect MP4 video: exit status 1"
+=== RUN   TestRealServiceScenarios/expired_attempts_count_toward_maximum
+=== RUN   TestRealServiceScenarios/heartbeat_renews_then_cancels_lost_ownership
+2026/09/29 06:04:36 INFO claimed job=0bcc7b20-a9d3-4ebe-9b7a-d186e408a131 attempt=1 token=edcea1a1-9034-4e95-9045-9b5f0906e217 worker=heartbeat-test
+2026/09/29 06:04:37 INFO publication_paused job=0bcc7b20-a9d3-4ebe-9b7a-d186e408a131 attempt=1 token=edcea1a1-9034-4e95-9045-9b5f0906e217 worker=heartbeat-test marker=/tmp/clipflow-paused-0bcc7b20-a9d3-4ebe-9b7a-d186e408a131
+2026/09/29 06:04:39 WARN lease_lost job=0bcc7b20-a9d3-4ebe-9b7a-d186e408a131 attempt=1 token=edcea1a1-9034-4e95-9045-9b5f0906e217 worker=heartbeat-test error="attempt no longer owns an unexpired lease"
+2026/09/29 06:04:39 WARN attempt_failed job=0bcc7b20-a9d3-4ebe-9b7a-d186e408a131 attempt=1 token=edcea1a1-9034-4e95-9045-9b5f0906e217 worker=heartbeat-test category=cancelled error="context canceled"
+2026/09/29 06:04:39 WARN failure_record_rejected job=0bcc7b20-a9d3-4ebe-9b7a-d186e408a131 attempt=1 token=edcea1a1-9034-4e95-9045-9b5f0906e217 worker=heartbeat-test error="attempt no longer owns an unexpired lease"
+2026/09/29 06:04:39 INFO claimed job=0bcc7b20-a9d3-4ebe-9b7a-d186e408a131 attempt=2 token=8a156331-96f9-4be9-9839-ff4a843a347e worker=heartbeat-test
+2026/09/29 06:04:40 INFO published job=0bcc7b20-a9d3-4ebe-9b7a-d186e408a131 attempt=2 token=8a156331-96f9-4be9-9839-ff4a843a347e worker=heartbeat-test
+=== RUN   TestRealServiceScenarios/real_outputs_metadata_and_restart
+2026/09/29 06:04:40 INFO claimed job=20698d6b-e5de-4398-bc62-08607493ba4f attempt=1 token=c719f167-3db8-4bec-ab28-efa3925bf1c0 worker=restarted
+2026/09/29 06:04:40 INFO published job=20698d6b-e5de-4398-bc62-08607493ba4f attempt=1 token=c719f167-3db8-4bec-ab28-efa3925bf1c0 worker=restarted
+--- PASS: TestRealServiceScenarios (9.63s)
+    --- PASS: TestRealServiceScenarios/ten_duplicate_and_concurrent_uploads (1.88s)
+    --- PASS: TestRealServiceScenarios/http_contract_and_bounds (0.70s)
+    --- PASS: TestRealServiceScenarios/concurrent_claims_and_stale_publication (0.06s)
+    --- PASS: TestRealServiceScenarios/retry_delays_exhaustion_and_corrupt_worker_input (0.18s)
+    --- PASS: TestRealServiceScenarios/expired_attempts_count_toward_maximum (0.04s)
+    --- PASS: TestRealServiceScenarios/heartbeat_renews_then_cancels_lost_ownership (3.92s)
+    --- PASS: TestRealServiceScenarios/real_outputs_metadata_and_restart (0.91s)
+PASS
+ok  	clipflow/internal/integration	9.645s
+?   	clipflow/internal/media	[no test files]
+?   	clipflow/internal/model	[no test files]
+?   	clipflow/internal/queue	[no test files]
+?   	clipflow/internal/service	[no test files]
+?   	clipflow/internal/storage	[no test files]
+?   	clipflow/internal/worker	[no test files]

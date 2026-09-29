@@ -145,7 +145,11 @@ func (w *Worker) process(ctx context.Context, j model.Job, log *slog.Logger) (er
 	// may outlive its heartbeat; Publish must reject it independently of cancellation.
 	if config.Env("CLIPFLOW_DEMO_MODE", "") == "1" && config.Env("PAUSE_BEFORE_PUBLISH", "") == "1" && j.AttemptCount == 1 {
 		marker := "/tmp/clipflow-paused-" + j.ID
-		os.WriteFile(marker, []byte(j.Token), 0600)
+		if err = os.WriteFile(marker, []byte(j.Token), 0600); err != nil {
+			return err, "local_io", false
+		}
+		defer os.Remove(marker)
+		defer os.Remove(marker + ".release")
 		log.Info("publication_paused", "marker", marker)
 		for {
 			if _, e := os.Stat(marker + ".release"); e == nil {

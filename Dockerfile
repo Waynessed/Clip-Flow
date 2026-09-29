@@ -10,3 +10,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends ffmpeg ca-certi
 COPY --from=build /out/ /usr/local/bin/
 USER 65534:65534
 ENTRYPOINT ["api"]
+
+FROM runtime AS verify
+USER root
+COPY --from=build /usr/local/go /usr/local/go
+COPY --from=build /go/pkg/mod /go/pkg/mod
+ENV PATH=/usr/local/go/bin:$PATH
+ENV CGO_ENABLED=0
+ENV GOPATH=/go
+WORKDIR /src
+COPY . .
+ENTRYPOINT ["go"]
+CMD ["test","-count=1","-v","./..."]
