@@ -1,0 +1,18 @@
+import {test,expect} from '@playwright/test';
+import path from 'node:path';
+test('real upload opens a playable preview and valid generated outputs',async({page})=>{
+ const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('/');await page.getByLabel('Choose MP4').setInputFiles(path.resolve('../.artifacts/demo.mp4'));
+ await page.getByRole('button',{name:'Process clip',exact:true}).click();
+ await expect(page.getByRole('status')).toContainText('Clip accepted');
+ await expect(page.getByRole('link',{name:'Open preview',exact:true})).toBeVisible({timeout:120_000});
+ const video=page.getByLabel('Processed preview');
+ await expect.poll(()=>video.evaluate((el:HTMLVideoElement)=>el.readyState)).toBeGreaterThanOrEqual(1);
+ const info=await video.evaluate((el:HTMLVideoElement)=>({duration:el.duration,width:el.videoWidth,height:el.videoHeight}));
+ expect(info.duration).toBeGreaterThan(0);expect(info.height).toBeLessThanOrEqual(480);expect(info.width%2).toBe(0);
+ const metadataLink=await page.getByRole('link',{name:'View metadata'}).getAttribute('href');
+ const metadata=await page.request.get(metadataLink!);expect(metadata.ok()).toBeTruthy();expect((await metadata.json()).preview.height).toBe(info.height);
+ await page.screenshot({path:'../.artifacts/first-demo.png',fullPage:true});
+ await page.getByRole('button',{name:'Process clip',exact:true}).click();await expect(page.getByRole('status')).toContainText('Clip accepted');
+ expect(errors).toEqual([]);
+});
