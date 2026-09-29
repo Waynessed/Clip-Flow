@@ -9,7 +9,7 @@ CF-00–CF-05 implemented and verified locally. First demo and full kill/recover
 - e82c287: initial code and reproducible environment.
 - 5bdefd5: first verified local/browser demo evidence.
 - 721e75c0054a8de1224232f3559f7561db7b71dd: verified recovery/reliability code and benchmark runtime; remote clean-checkout CI passed.
-- Final CF-05 code/evidence: the next completion commit; the implementation log records its SHA once available. Use `git rev-parse HEAD` for the exact current repository revision. A documentation-only follow-up may record the completed code revision without changing implementation.
+- d1434ab135940b6a8cdf394e747b8b53bd235400: completed CF-05 implementation, final local tests and all benchmark/evidence records, pushed to origin/master. This is the current implementation HEAD. A documentation-only follow-up records final CI status; use `git rev-parse HEAD` for the exact current documentation revision.
 
 ## Commands
 
@@ -37,7 +37,7 @@ Requirements: Docker Desktop Linux engine and PowerShell. Host Node 24 is needed
 - Input 30.000 seconds accepted with 30.001-second AAC output; 31-second input rejected.
 - Go vet, frontend build, final Playwright upload/playback, git diff --check.
 - Nine benchmarks; all raw evidence preserved. Aggregate throughput 46.37/145.13/95.05 jobs per minute for 1/2/4 workers. Two workers fastest in aggregate; four-worker variance and uncontrolled host conditions explicitly reported.
-- Remote clean-checkout GitHub Actions run 36529397777 passed at 721e75c; final source local verification passed, final push's remote run status recorded separately when available.
+- Remote clean-checkout GitHub Actions passed both 721e75c (run 36529397777) and final implementation d1434ab (run 36531496192). Final evidence: docs/evidence/ci-final.json; https://github.com/Waynessed/Clip-Flow/actions/runs/36531496192.
 
 ## Records and limits
 

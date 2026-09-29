@@ -37,3 +37,5 @@ Measured throughput ratios relative to one worker: two workers 3.13×; four work
 Failed runs: 0. All raw runs are retained.
 
 Two workers had the highest aggregate throughput. Four-worker run rates ranged from 66.11 to 185.40 jobs/minute; this wide variation is retained. Host load, power state and thermal behaviour were not controlled or measured, so the cause of that variation is not established. The unexpectedly large two-vs-one ratio also needs controlled follow-up before attributing it to worker scaling. CPU snapshots briefly exceed configured per-worker quota equivalents; these are Docker-reported observations, not proof of sustained quota violations. Individual and pooled resource summaries are derived from the persisted raw samples; summary-original.json preserves the original in-memory summary before the sampler serialization correction.
+
+Run order was grouped and fixed: three one-worker runs, then three two-worker runs, then three four-worker runs. It was not randomized; order/cache/power-state effects are additional limitations of this recorded comparison.
