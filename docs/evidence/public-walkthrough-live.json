@@ -1,0 +1,109 @@
+{
+  "checked_at": "2026-09-29T15:52:16.050Z",
+  "url": "https://waynessed.github.io/Clip-Flow/",
+  "success": true,
+  "playback": {
+    "width": 854,
+    "height": 480,
+    "duration": 3.018005,
+    "currentTime": 0.413297
+  },
+  "public_asset_checks": [
+    {
+      "file": "media/processed/preview.mp4",
+      "status": 200,
+      "bytes": 196753,
+      "sha256": "24e07a17cb04034dd34da29a1fa1cd8a6eddba3dae46089dc4425ea7559dad20"
+    },
+    {
+      "file": "media/processed/thumbnail.jpg",
+      "status": 200,
+      "bytes": 19418,
+      "sha256": "ef9a474cfd3877bb3ab15940925d5b5c7c9d0397531462934ab25a9667b93c0e"
+    },
+    {
+      "file": "media/processed/metadata.json",
+      "status": 200,
+      "bytes": 297,
+      "sha256": "a74f367201a37cb752efcaa1c410c8f406420fff1b80f86f852b4d5eae84d5d9"
+    },
+    {
+      "file": "media/recovered/preview.mp4",
+      "status": 200,
+      "bytes": 196753,
+      "sha256": "24e07a17cb04034dd34da29a1fa1cd8a6eddba3dae46089dc4425ea7559dad20"
+    },
+    {
+      "file": "media/recovered/thumbnail.jpg",
+      "status": 200,
+      "bytes": 19418,
+      "sha256": "ef9a474cfd3877bb3ab15940925d5b5c7c9d0397531462934ab25a9667b93c0e"
+    },
+    {
+      "file": "media/recovered/metadata.json",
+      "status": 200,
+      "bytes": 297,
+      "sha256": "a74f367201a37cb752efcaa1c410c8f406420fff1b80f86f852b4d5eae84d5d9"
+    },
+    {
+      "file": "media/stale/preview.mp4",
+      "status": 200,
+      "bytes": 196753,
+      "sha256": "24e07a17cb04034dd34da29a1fa1cd8a6eddba3dae46089dc4425ea7559dad20"
+    },
+    {
+      "file": "media/stale/thumbnail.jpg",
+      "status": 200,
+      "bytes": 19418,
+      "sha256": "ef9a474cfd3877bb3ab15940925d5b5c7c9d0397531462934ab25a9667b93c0e"
+    },
+    {
+      "file": "media/stale/metadata.json",
+      "status": 200,
+      "bytes": 297,
+      "sha256": "a74f367201a37cb752efcaa1c410c8f406420fff1b80f86f852b4d5eae84d5d9"
+    },
+    {
+      "file": "media/input.mp4",
+      "status": 200,
+      "bytes": 547291,
+      "sha256": "da8bc7e3d1288b9b388bb2affeada6301823a8247889f38b229ba5b73f8fb3f2"
+    }
+  ],
+  "browser_requests": [
+    {
+      "method": "GET",
+      "url": "https://waynessed.github.io/Clip-Flow/"
+    },
+    {
+      "method": "GET",
+      "url": "https://waynessed.github.io/Clip-Flow/assets/index-Bq9sdb5F.js"
+    },
+    {
+      "method": "GET",
+      "url": "https://waynessed.github.io/Clip-Flow/assets/index-BkNTsEbc.css"
+    },
+    {
+      "method": "GET",
+      "url": "https://waynessed.github.io/Clip-Flow/media/processed/thumbnail.jpg"
+    },
+    {
+      "method": "GET",
+      "url": "https://waynessed.github.io/Clip-Flow/media/processed/preview.mp4"
+    },
+    {
+      "method": "GET",
+      "url": "https://waynessed.github.io/Clip-Flow/media/processed/preview.mp4"
+    },
+    {
+      "method": "GET",
+      "url": "https://waynessed.github.io/Clip-Flow/media/stale/thumbnail.jpg"
+    },
+    {
+      "method": "GET",
+      "url": "https://waynessed.github.io/Clip-Flow/media/stale/preview.mp4"
+    }
+  ],
+  "browser_errors": [],
+  "notes": "Actual HTTPS asset/hash and browser checks; no local backend or uploads involved."
+}

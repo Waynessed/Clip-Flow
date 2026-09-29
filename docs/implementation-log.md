@@ -154,3 +154,40 @@ Synthetic clips, uncontrolled laptop benchmarks and recorded CI evidence retain
 their original limits. GitHub Pages handles hosting/access logs and HTTPS. CSP is
 a meta policy, not a claim of arbitrary server-header control. A custom domain,
 public authentication and runtime upload processing are outside this request.
+
+## CF-06 — successful public deployment and hosted checks — 2026-09-29 UTC
+
+Implementation commit 63da9efa5408b2a9910434102f157d790d9d80c5 was committed
+after local verification and pushed to origin/master. Pages workflow
+36593150641 completed successfully at 15:51:00 UTC: fresh dependency install,
+offline asset verification/build, both Playwright checks, artifact preservation
+and actual deployment all passed. Configured URL:
+https://waynessed.github.io/Clip-Flow/, enforced HTTPS. The repository About
+homepage was updated to this verified live link; README also links it.
+
+Executed `node scripts/verify-public-walkthrough.mjs` against the real public
+site: ten successful HTTPS asset fetches matched approved SHA-256 hashes;
+Chromium played the 854x480 preview with currentTime advancing to 0.413 seconds;
+recorded stale rejection/three-attempt outage selection, mobile width, CSP,
+absence of forms, GET-only same-origin requests and no browser errors all passed.
+This check used no local services. Public verification and sanitized successful
+deployment/job settings are preserved in docs/evidence/public-walkthrough-live.json
+and pages-deployment.json. A browser panel was requested for the deployed URL.
+
+Follow-up: `.gitattributes` now preserves the public assets as exact bytes
+(`web/walkthrough-public/** -text`), preventing Windows checkout newline
+conversion from invalidating JSON asset hashes. The exported input/media/data
+and deployed UI remain the same. The follow-up also adds the executed public
+verifier and completes current-state, walkthrough/operations and deployment
+records; it does not require rebuilding the unchanged public artifact.
+The separate original full-stack CI run 36593150644 is still in progress at
+this checkpoint. Its result is not inferred from the successful Pages workflow.
+Local services remain stopped, data retained. No requested implementation or
+deployment work remains.
+
+Final full-stack result: run 36593150644 for 63da9ef completed successfully.
+Clean-checkout Compose startup, Go tests/vet and the original frontend/browser
+flow passed. Its actual API result is retained in ci-public-extension.json.
+Both the original local-stack verification and the public Pages workflow are
+now independently confirmed. The following records/verifier/Git-attributes
+commit uses [skip ci] because it changes no deployed application bytes.

@@ -11,6 +11,9 @@ from explicit evidence IDs, verifying the exported media hashes. The public
 entry never calls these API routes and has no upload form. Selecting a scenario
 changes React state; playing a clip requests a static exported MP4. See
 public-walkthrough.md for its deployment/operations flow.
+The deployed public entry is recorded at revision `63da9ef`; the follow-up
+`scripts/verify-public-walkthrough.mjs` checks actual HTTPS media hashes and
+browser playback and writes executed evidence only on success.
 
 `web/src/main.tsx` uses a real multipart file and request key. `request<T>` parses the JSON error envelope. `App.upload` submits the file and selects the returned job. The refresh effect polls the list and selected detail every second; outputs appear only on succeeded jobs.
 

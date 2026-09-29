@@ -2,8 +2,8 @@
 
 ## Public read-only walkthrough
 
-https://waynessed.github.io/Clip-Flow/ (initial deployment status is recorded in
-current-state.md). Select one of the four recorded runs, play the actual preview
+https://waynessed.github.io/Clip-Flow/ is deployed; evidence is recorded in
+current-state.md. Select one of the four recorded runs, play the actual preview
 or original input, open metadata/thumbnail, inspect attempts and follow the
 processing stages. These are recorded examples, not newly submitted jobs.
 

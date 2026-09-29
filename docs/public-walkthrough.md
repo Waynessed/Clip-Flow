@@ -33,14 +33,16 @@ visible keyboard focus and no automatic animations make exploration accessible.
 
 The public URL is https://waynessed.github.io/Clip-Flow/. Pages was enabled
 through the GitHub API with `build_type=workflow` and `https_enforced=true`.
-Initial deployment is pending until a successful workflow and HTTPS checks are
-recorded in current-state.md and implementation-log.md.
+Pages workflow 36593150641 deployed revision 63da9ef successfully. Actual
+HTTPS asset hashes and hosted browser playback were checked afterward; see
+docs/evidence/pages-deployment.json and public-walkthrough-live.json.
 
 ### Build and verify locally
 
 ```powershell
 Set-Location D:/Projects/ClipFlow/web
 npm ci
+npx playwright install chromium
 npm run build:walkthrough
 npm run test:walkthrough
 npm run preview:walkthrough
@@ -49,6 +51,11 @@ npm run preview:walkthrough
 
 The preview runs in the foreground; Ctrl+C stops it. The hosted walkthrough
 continues serving even when local Docker or the computer is stopped.
+
+From the repository root, with web dependencies and Chromium installed, run
+`node scripts/verify-public-walkthrough.mjs` to check the actual published copy.
+It checks HTTPS media hashes, browser playback and read-only behavior, then
+writes public-walkthrough-live.json only on success.
 
 `scripts/walkthrough-data.mjs` reads the checked-in evidence for four fixed
 job IDs, builds public recordings without raw storage errors or internal object

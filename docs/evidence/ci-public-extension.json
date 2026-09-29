@@ -1,0 +1,116 @@
+{
+  "run": {
+    "id": 36593150644,
+    "head_sha": "63da9efa5408b2a9910434102f157d790d9d80c5",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/Waynessed/Clip-Flow/actions/runs/36593150644",
+    "created_at": "2026-09-29T15:49:40Z",
+    "updated_at": "2026-09-29T15:53:51Z"
+  },
+  "jobs": [
+    {
+      "name": "integration",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-09-29T15:49:44Z",
+          "completed_at": "2026-09-29T15:49:45Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-09-29T15:49:45Z",
+          "completed_at": "2026-09-29T15:49:45Z"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-09-29T15:49:45Z",
+          "completed_at": "2026-09-29T15:49:46Z"
+        },
+        {
+          "name": "Start real services",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-09-29T15:49:46Z",
+          "completed_at": "2026-09-29T15:52:35Z"
+        },
+        {
+          "name": "Go integration and cleanup tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-09-29T15:52:35Z",
+          "completed_at": "2026-09-29T15:53:19Z"
+        },
+        {
+          "name": "Generate browser fixture",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-09-29T15:53:19Z",
+          "completed_at": "2026-09-29T15:53:20Z"
+        },
+        {
+          "name": "Browser upload-to-preview",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-09-29T15:53:20Z",
+          "completed_at": "2026-09-29T15:53:49Z"
+        },
+        {
+          "name": "Preserve evidence and service logs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-09-29T15:53:49Z",
+          "completed_at": "2026-09-29T15:53:49Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-09-29T15:53:49Z",
+          "completed_at": "2026-09-29T15:53:49Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-09-29T15:53:49Z",
+          "completed_at": "2026-09-29T15:53:49Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-09-29T15:53:49Z",
+          "completed_at": "2026-09-29T15:53:49Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-09-29T15:53:49Z",
+          "completed_at": "2026-09-29T15:53:49Z"
+        }
+      ]
+    }
+  ]
+}

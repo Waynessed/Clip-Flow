@@ -6,3 +6,5 @@
 *.sh text eol=lf
 Dockerfile text eol=lf
 *.Dockerfile text eol=lf
+# Published media and JSON are byte-verified; never rewrite their line endings.
+web/walkthrough-public/** -text

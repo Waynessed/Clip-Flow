@@ -2,9 +2,11 @@
 
 ## Delivered
 
-CF-06 public read-only walkthrough is implemented and verified locally; its
-first Pages deployment is pending. It uses actual exported synthetic media
-and four archived scenarios, with no public API/upload/storage credentials.
+CF-06 public read-only walkthrough is deployed at
+https://waynessed.github.io/Clip-Flow/. Pages workflow 36593150641 passed for
+63da9efa5408b2a9910434102f157d790d9d80c5. Actual HTTPS/browser checks verified
+playback, four recorded scenarios, read-only requests, mobile width and all ten
+exported asset hashes. It has no public API/upload/storage credentials.
 See public-walkthrough.md. Local services were stopped when CF-06 began;
 DB, MinIO and API were started temporarily to export the preserved examples,
 then stopped with data volumes retained. No local services are left running.
@@ -14,12 +16,12 @@ CF-00–CF-05 implemented and verified locally. First demo and full kill/recover
 ## Revisions
 
 - b7bc6cf6b0e9f1aaa078039ddc755c94b7194874: final CF-05 documentation checkpoint.
-- CF-06 implementation revision will be recorded after its verified commit.
+- 63da9efa5408b2a9910434102f157d790d9d80c5: deployed CF-06 walkthrough implementation. The local Go application remains based on d1434ab. A follow-up records live verification and preserves byte-verified assets across Windows checkouts; use `git rev-parse HEAD` for the exact repository revision.
 
 - e82c287: initial code and reproducible environment.
 - 5bdefd5: first verified local/browser demo evidence.
 - 721e75c0054a8de1224232f3559f7561db7b71dd: verified recovery/reliability code and benchmark runtime; remote clean-checkout CI passed.
-- d1434ab135940b6a8cdf394e747b8b53bd235400: completed CF-05 implementation, final local tests and all benchmark/evidence records, pushed to origin/master. This is the current implementation HEAD. A documentation-only follow-up records final CI status; use `git rev-parse HEAD` for the exact current documentation revision.
+- d1434ab135940b6a8cdf394e747b8b53bd235400: completed CF-05 local application implementation, final tests and benchmark/evidence records, pushed to origin/master.
 
 ## Commands
 
@@ -37,6 +39,9 @@ Requirements: Docker Desktop Linux engine and PowerShell. Host Node 24 is needed
 
 ## Executed verification
 
+- CF-06: public/local walkthrough builds; original frontend build; two local Playwright checks; two remote walkthrough checks and successful Pages deployment. Actual hosted preview playback and ten HTTPS asset hashes passed. Evidence: pages-deployment.json, public-walkthrough-live.json and walkthrough-playwright-local.json under docs/evidence.
+- The separate original full-stack CI run 36593150644 for 63da9ef also completed successfully: clean-checkout Compose startup, Go tests/vet, frontend build and real upload/playback. Evidence: docs/evidence/ci-public-extension.json.
+
 - Fresh database migration/bucket initialization and readiness; final bootstrap also passed.
 - Real MP4 upload, JPEG/854x480 H.264/AAC preview, actual metadata and browser playback.
 - Ten sequential and ten concurrent identical-key requests; different-content 409; malformed/oversized/corrupt request bounds.
@@ -53,4 +58,12 @@ Requirements: Docker Desktop Linux engine and PowerShell. Host Node 24 is needed
 
 Read implementation-log.md, walkthrough.md, decisions.md, demo.md and benchmark-report.md. Original and final evidence is in docs/evidence; measured raw data is in docs/benchmarks. Explanations of stages must read the actual recorded revision and tests.
 
-No required implementation work remains. Intentional limits: local single workspace, no accounts/public deployment, repeated execution possible with guarded publication, orphan objects retained until explicit 24-hour cleanup, full-object streaming without HTTP range support, slow initial source build, short synthetic benchmark and sampled resources. The sampler reporting correction was validated against saved raw data; the full benchmark was not rerun after that correction. Normal service/demos should be run one at a time when intentionally stopping workers/storage.
+No required implementation/deployment work remains. Intentional limits: local
+single workspace with no accounts or hosted upload backend; the public site
+serves clearly labelled recorded examples only. Local execution can repeat with
+guarded publication; orphan objects remain until explicit 24-hour cleanup; the
+local API streams full objects without range support. Slow initial source
+build, synthetic benchmark and sampled-resource limitations remain. The sampler
+correction was validated from saved data, without inventing a repeated benchmark.
+Run local service-interruption demos one at a time. Public-host verification and
+rollback/unpublish commands are documented in public-walkthrough.md.

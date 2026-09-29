@@ -18,6 +18,8 @@
 - e82c287: initial implementation with queue leases/publication primitives included alongside the first vertical path.
 - 5bdefd5: first verified browser/media demo evidence.
 - 721e75c: local reliability/recovery/cleanup verification and evidence.
+- d1434ab: final local application implementation and verified CI/benchmarks.
+- 63da9ef: public read-only walkthrough and successful Pages/full-stack CI.
 
 The stage order prioritized the first working demo. Several later-stage primitives were implemented in the initial code to avoid rewriting the schema; evidence and demos for those primitives were delivered after first-demo acceptance. This is a documented scheduling deviation, not a claim that untested early code was verified.
 
