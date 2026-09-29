@@ -1,0 +1,65 @@
+{
+  "id": "1fa6bba1-81a4-41fe-9b29-9db482f5dea2",
+  "filename": "demo.mp4",
+  "state": "succeeded",
+  "attempt_count": 2,
+  "created_at": "2026-09-29T06:26:21.779215Z",
+  "updated_at": "2026-09-29T06:26:34.093593Z",
+  "completed_at": "2026-09-29T06:26:34.093593Z",
+  "error_category": null,
+  "error_message": null,
+  "metadata": {
+    "objects": {
+      "metadata": "attempts/1fa6bba1-81a4-41fe-9b29-9db482f5dea2/587a3a50-2762-4689-8e05-67c66d742c30/metadata.json",
+      "preview": "attempts/1fa6bba1-81a4-41fe-9b29-9db482f5dea2/587a3a50-2762-4689-8e05-67c66d742c30/preview.mp4",
+      "thumbnail": "attempts/1fa6bba1-81a4-41fe-9b29-9db482f5dea2/587a3a50-2762-4689-8e05-67c66d742c30/thumbnail.jpg"
+    },
+    "input": {
+      "duration": 3,
+      "width": 960,
+      "height": 540,
+      "size": 547291,
+      "audio": true
+    },
+    "preview": {
+      "duration": 3.019,
+      "width": 854,
+      "height": 480,
+      "size": 196753,
+      "audio": true
+    },
+    "sizes": {
+      "preview": 196753,
+      "thumbnail": 19418
+    }
+  },
+  "outputs": {
+    "metadata": "/v1/jobs/1fa6bba1-81a4-41fe-9b29-9db482f5dea2/outputs/metadata",
+    "preview": "/v1/jobs/1fa6bba1-81a4-41fe-9b29-9db482f5dea2/outputs/preview",
+    "thumbnail": "/v1/jobs/1fa6bba1-81a4-41fe-9b29-9db482f5dea2/outputs/thumbnail"
+  },
+  "attempts": [
+    {
+      "number": 1,
+      "token": "819a9e2d-9f0e-47cf-9b67-a6248320d03a",
+      "worker": "99b614650940-8a76fb41-7c98-42c2-8985-ed68cdf241c9",
+      "started_at": "2026-09-29T06:26:22.066377Z",
+      "ended_at": "2026-09-29T06:26:30.307875Z",
+      "outcome": "expired",
+      "error_category": "lease_expired",
+      "error_message": "Worker lease expired before publication",
+      "output_prefix": "attempts/1fa6bba1-81a4-41fe-9b29-9db482f5dea2/819a9e2d-9f0e-47cf-9b67-a6248320d03a/"
+    },
+    {
+      "number": 2,
+      "token": "587a3a50-2762-4689-8e05-67c66d742c30",
+      "worker": "bc9e6cb439a8-e89b0e55-b62f-4c62-b347-3b9e9ea4f00d",
+      "started_at": "2026-09-29T06:26:30.312608Z",
+      "ended_at": "2026-09-29T06:26:34.094293Z",
+      "outcome": "succeeded",
+      "error_category": null,
+      "error_message": null,
+      "output_prefix": "attempts/1fa6bba1-81a4-41fe-9b29-9db482f5dea2/587a3a50-2762-4689-8e05-67c66d742c30/"
+    }
+  ]
+}

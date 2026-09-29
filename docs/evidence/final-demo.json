@@ -1,0 +1,54 @@
+{
+  "id": "fad3a48b-ee29-4c19-ba78-0f406dc7f2d8",
+  "filename": "demo.mp4",
+  "state": "succeeded",
+  "attempt_count": 1,
+  "created_at": "2026-09-29T06:28:28.192707Z",
+  "updated_at": "2026-09-29T06:28:33.365901Z",
+  "completed_at": "2026-09-29T06:28:33.365902Z",
+  "error_category": null,
+  "error_message": null,
+  "metadata": {
+    "objects": {
+      "metadata": "attempts/fad3a48b-ee29-4c19-ba78-0f406dc7f2d8/45294482-81a1-4b90-8423-3fc21ba6a197/metadata.json",
+      "preview": "attempts/fad3a48b-ee29-4c19-ba78-0f406dc7f2d8/45294482-81a1-4b90-8423-3fc21ba6a197/preview.mp4",
+      "thumbnail": "attempts/fad3a48b-ee29-4c19-ba78-0f406dc7f2d8/45294482-81a1-4b90-8423-3fc21ba6a197/thumbnail.jpg"
+    },
+    "input": {
+      "duration": 3,
+      "width": 960,
+      "height": 540,
+      "size": 547291,
+      "audio": true
+    },
+    "preview": {
+      "duration": 3.019,
+      "width": 854,
+      "height": 480,
+      "size": 196753,
+      "audio": true
+    },
+    "sizes": {
+      "preview": 196753,
+      "thumbnail": 19418
+    }
+  },
+  "outputs": {
+    "metadata": "/v1/jobs/fad3a48b-ee29-4c19-ba78-0f406dc7f2d8/outputs/metadata",
+    "preview": "/v1/jobs/fad3a48b-ee29-4c19-ba78-0f406dc7f2d8/outputs/preview",
+    "thumbnail": "/v1/jobs/fad3a48b-ee29-4c19-ba78-0f406dc7f2d8/outputs/thumbnail"
+  },
+  "attempts": [
+    {
+      "number": 1,
+      "token": "45294482-81a1-4b90-8423-3fc21ba6a197",
+      "worker": "bc9e6cb439a8-e89b0e55-b62f-4c62-b347-3b9e9ea4f00d",
+      "started_at": "2026-09-29T06:28:28.5382Z",
+      "ended_at": "2026-09-29T06:28:33.367326Z",
+      "outcome": "succeeded",
+      "error_category": null,
+      "error_message": null,
+      "output_prefix": "attempts/fad3a48b-ee29-4c19-ba78-0f406dc7f2d8/45294482-81a1-4b90-8423-3fc21ba6a197/"
+    }
+  ]
+}

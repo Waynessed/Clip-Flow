@@ -26,7 +26,7 @@ try{
  for(const workers of [1,2,4])for(let repetition=1;repetition<=3;repetition++){
   const raw={workers,repetition,started_at:new Date().toISOString(),jobs:[],samples:[],status:'running'};
   const rawPath=path.join(artifact,`workers-${workers}-run-${repetition}.json`);
-  let sampler;
+  let sampler,pendingSample=Promise.resolve();
   try{
    await compose('stop','worker');
    const pending=await api('/v1/jobs');if(pending.some(j=>['queued','running'].includes(j.state)))throw new Error('Queue contains unrelated pending jobs. Finish those before benchmarking.');
@@ -38,7 +38,7 @@ try{
    const ids=(await compose('ps','-q','worker')).split(/\r?\n/).filter(Boolean);
    let sampling=false;
    const sample=async()=>{if(sampling)return;sampling=true;try{const out=await docker('stats','--no-stream','--format','{{json .}}',...ids);raw.samples.push({at:new Date().toISOString(),containers:out.split(/\r?\n/).map(s=>JSON.parse(s))})}catch(e){raw.samples.push({at:new Date().toISOString(),error:e.message})}finally{sampling=false}};
-   sampler=setInterval(sample,2000);await sample();
+   sampler=setInterval(()=>{if(!sampling){pendingSample=sample()}},2000);await sample();
    const waiting=new Map(raw.jobs.map(j=>[j.id,j]));const deadline=Date.now()+15*60*1000;
    while(waiting.size&&Date.now()<deadline){
     const batch=[...waiting.values()];let index=0;
@@ -49,7 +49,7 @@ try{
    if(waiting.size)throw new Error(`${waiting.size} jobs did not finish within 15 minutes`);
    const failed=raw.jobs.filter(j=>j.detail.state!=='succeeded');if(failed.length)throw new Error(`${failed.length} jobs failed`);
    raw.status='succeeded';
-  }catch(e){raw.status='failed';raw.error=e.message;console.error(`Run failed: ${e.message}`)}finally{if(sampler)clearInterval(sampler);raw.ended_at=new Date().toISOString();await writeFile(rawPath,JSON.stringify(raw,null,2));results.push(raw)}
+  }catch(e){raw.status='failed';raw.error=e.message;console.error(`Run failed: ${e.message}`)}finally{if(sampler)clearInterval(sampler);await pendingSample;raw.ended_at=new Date().toISOString();await writeFile(rawPath,JSON.stringify(raw,null,2));results.push(raw)}
  }
 }finally{await compose('up','-d','--no-deps','--scale','worker=1','worker')}
 const percentile=(xs,p)=>{const a=[...xs].sort((a,b)=>a-b);return a.length?a[Math.ceil(p*a.length)-1]:null};

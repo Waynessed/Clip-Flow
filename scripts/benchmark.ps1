@@ -9,3 +9,6 @@ docker cp "${api}:/tmp/benchmark-clips/." .artifacts/benchmark-clips
 if ($LASTEXITCODE -ne 0) { throw 'Could not copy benchmark fixtures' }
 node scripts/benchmark.mjs
 if ($LASTEXITCODE -ne 0) { throw 'Benchmark contains failed runs; inspect raw evidence' }
+
+node scripts/report-benchmark.mjs
+if ($LASTEXITCODE -ne 0) { throw 'Benchmark comparison report failed' }

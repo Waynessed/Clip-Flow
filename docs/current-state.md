@@ -1,13 +1,46 @@
 # Current state
 
-CF-00 through CF-04: verified local implementation. CF-05: tests/CI/cleanup implemented, nine benchmarks pending. First demo and complete kill/recovery/stale-publication demo work. Local UI http://localhost:5173, API http://localhost:8080.
+## Delivered
 
-Current recorded HEAD: 5bdefd5 (first-demo evidence). The next checkpoint contains reliability/verification code; read git rev-parse HEAD for current revision, and implementation-log.md plus git log for the code/evidence history.
+CF-00–CF-05 implemented and verified locally. First demo and full kill/recovery/obsolete-publication demo work. The app is running at http://localhost:5173 with one normal worker; API http://localhost:8080. PostgreSQL and MinIO remain internal. Nine measured runs completed 900 unique jobs successfully, with 100 distinct fixtures and zero failed runs.
 
-Commands: ./scripts/bootstrap.ps1; ./scripts/demo.ps1 -SkipBootstrap -Recovery -Stale; node scripts/reliability.mjs; ./scripts/test.ps1; ./scripts/benchmark.ps1; docker --context desktop-linux compose run --rm --entrypoint cleanup tools.
+## Revisions
 
-Prerequisites: Docker Desktop Linux engine, PowerShell; Node 24 for host browser tests/benchmark runner. No host Go or FFmpeg. Initial internet build compiled pinned upstream MinIO because registries refused images; first source build took 483 seconds. Database/storage are internal, API/frontend localhost only.
+- e82c287: initial code and reproducible environment.
+- 5bdefd5: first verified local/browser demo evidence.
+- 721e75c0054a8de1224232f3559f7561db7b71dd: verified recovery/reliability code and benchmark runtime; remote clean-checkout CI passed.
+- Final CF-05 code/evidence: the next completion commit; the implementation log records its SHA once available. Use `git rev-parse HEAD` for the exact current repository revision. A documentation-only follow-up may record the completed code revision without changing implementation.
 
-Verified: empty-DB migration/readiness, real media flow, actual browser playback, idempotency including ten concurrent duplicates, exclusive claims, three-attempt retry/expiry bounds, heartbeat renewal/cancellation, real killed-worker recovery, actual obsolete completion rejected, real API/worker restarts preserving queued work, real MinIO outage with bounded retries, cleanup unit and real-store reference protection, metrics query, Go vet. Evidence: docs/evidence.
+## Commands
 
-Unverified: remote GitHub Actions execution, complete nine-run benchmark, clean checkout replay after the latest packaging changes. Next: commit recovery checkpoint, run benchmark, final clean-start validation and document exact results.
+```powershell
+./scripts/bootstrap.ps1
+./scripts/demo.ps1 -SkipBootstrap -Recovery -Stale
+node scripts/reliability.mjs
+./scripts/test.ps1
+./scripts/benchmark.ps1
+# Explicit reference/age-protected cleanup
+ docker --context desktop-linux compose run --rm --entrypoint cleanup tools
+```
+
+Requirements: Docker Desktop Linux engine and PowerShell. Host Node 24 is needed for Playwright/benchmarks only. No host Go/FFmpeg required. Internet is required for the first build; pinned MinIO source compilation took 483 seconds here, subsequent builds reuse it.
+
+## Executed verification
+
+- Fresh database migration/bucket initialization and readiness; final bootstrap also passed.
+- Real MP4 upload, JPEG/854x480 H.264/AAC preview, actual metadata and browser playback.
+- Ten sequential and ten concurrent identical-key requests; different-content 409; malformed/oversized/corrupt request bounds.
+- Exclusive claims; three-attempt retry/expiry bounds; 5/15-second retry scheduling; corrupt stored input permanent failure.
+- Heartbeat renewal and ownership-loss cancellation; actual killed-worker recovery; actual obsolete completion rejected with unchanged manifest.
+- Actual API/worker restarts preserving queued work; real MinIO outage exhausting exactly three attempts, services restored.
+- Cleanup age/namespace/reference/refusal unit tests and real orphan deletion/reference protection.
+- Input 30.000 seconds accepted with 30.001-second AAC output; 31-second input rejected.
+- Go vet, frontend build, final Playwright upload/playback, git diff --check.
+- Nine benchmarks; all raw evidence preserved. Aggregate throughput 46.37/145.13/95.05 jobs per minute for 1/2/4 workers. Two workers fastest in aggregate; four-worker variance and uncontrolled host conditions explicitly reported.
+- Remote clean-checkout GitHub Actions run 36529397777 passed at 721e75c; final source local verification passed, final push's remote run status recorded separately when available.
+
+## Records and limits
+
+Read implementation-log.md, walkthrough.md, decisions.md, demo.md and benchmark-report.md. Original and final evidence is in docs/evidence; measured raw data is in docs/benchmarks. Explanations of stages must read the actual recorded revision and tests.
+
+No required implementation work remains. Intentional limits: local single workspace, no accounts/public deployment, repeated execution possible with guarded publication, orphan objects retained until explicit 24-hour cleanup, full-object streaming without HTTP range support, slow initial source build, short synthetic benchmark and sampled resources. The sampler reporting correction was validated against saved raw data; the full benchmark was not rerun after that correction. Normal service/demos should be run one at a time when intentionally stopping workers/storage.

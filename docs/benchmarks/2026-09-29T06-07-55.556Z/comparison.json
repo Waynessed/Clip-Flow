@@ -1,0 +1,53 @@
+[
+  {
+    "workers": 1,
+    "runs": 3,
+    "failed_runs": 0,
+    "completed": 300,
+    "total_elapsed_seconds": 388.1943728,
+    "jobs_per_minute": 46.36852376341299,
+    "median_queue_wait_seconds": 66.063,
+    "p95_queue_wait_seconds": 117.297,
+    "median_e2e_seconds": 67.504,
+    "p95_e2e_seconds": 118.612,
+    "preview_reduction_percent": 62.357523142323664,
+    "combined_media_reduction_percent": 46.211230280784235,
+    "mean_total_cpu_percent": 97.6589285714286,
+    "peak_total_cpu_percent": 131.28,
+    "peak_total_memory_mib": 71.54
+  },
+  {
+    "workers": 2,
+    "runs": 3,
+    "failed_runs": 0,
+    "completed": 300,
+    "total_elapsed_seconds": 124.02501109999994,
+    "jobs_per_minute": 145.13201684365748,
+    "median_queue_wait_seconds": 23.961,
+    "p95_queue_wait_seconds": 39.181,
+    "median_e2e_seconds": 24.765,
+    "p95_e2e_seconds": 39.754,
+    "preview_reduction_percent": 62.357523142323664,
+    "combined_media_reduction_percent": 46.211230280784235,
+    "mean_total_cpu_percent": 186.89632653061224,
+    "peak_total_cpu_percent": 203.66000000000003,
+    "peak_total_memory_mib": 79.78
+  },
+  {
+    "workers": 4,
+    "runs": 3,
+    "failed_runs": 0,
+    "completed": 300,
+    "total_elapsed_seconds": 189.36543089999992,
+    "jobs_per_minute": 95.05430803526879,
+    "median_queue_wait_seconds": 27.924,
+    "p95_queue_wait_seconds": 75.745,
+    "median_e2e_seconds": 29.424,
+    "p95_e2e_seconds": 78.627,
+    "preview_reduction_percent": 62.357523142323664,
+    "combined_media_reduction_percent": 46.211230280784235,
+    "mean_total_cpu_percent": 402.0235185185183,
+    "peak_total_cpu_percent": 484.40999999999997,
+    "peak_total_memory_mib": 193.74
+  }
+]
