@@ -1,0 +1,54 @@
+{
+  "id": "3e5c1166-48a3-435e-9980-3a34ca926a41",
+  "filename": "demo.mp4",
+  "state": "succeeded",
+  "attempt_count": 1,
+  "created_at": "2026-09-29T05:54:40.13016Z",
+  "updated_at": "2026-09-29T05:54:43.608471Z",
+  "completed_at": "2026-09-29T05:54:43.608471Z",
+  "error_category": null,
+  "error_message": null,
+  "metadata": {
+    "objects": {
+      "metadata": "attempts/3e5c1166-48a3-435e-9980-3a34ca926a41/0f02c1cc-2e52-4c4c-b807-4770de322678/metadata.json",
+      "preview": "attempts/3e5c1166-48a3-435e-9980-3a34ca926a41/0f02c1cc-2e52-4c4c-b807-4770de322678/preview.mp4",
+      "thumbnail": "attempts/3e5c1166-48a3-435e-9980-3a34ca926a41/0f02c1cc-2e52-4c4c-b807-4770de322678/thumbnail.jpg"
+    },
+    "input": {
+      "duration": 3,
+      "width": 960,
+      "height": 540,
+      "size": 547291,
+      "audio": true
+    },
+    "preview": {
+      "duration": 3.019,
+      "width": 854,
+      "height": 480,
+      "size": 196753,
+      "audio": true
+    },
+    "sizes": {
+      "preview": 196753,
+      "thumbnail": 19418
+    }
+  },
+  "outputs": {
+    "metadata": "/v1/jobs/3e5c1166-48a3-435e-9980-3a34ca926a41/outputs/metadata",
+    "preview": "/v1/jobs/3e5c1166-48a3-435e-9980-3a34ca926a41/outputs/preview",
+    "thumbnail": "/v1/jobs/3e5c1166-48a3-435e-9980-3a34ca926a41/outputs/thumbnail"
+  },
+  "attempts": [
+    {
+      "number": 1,
+      "token": "0f02c1cc-2e52-4c4c-b807-4770de322678",
+      "worker": "70b56595bbe2-a668de91-82ab-4e79-82a0-583aa5804b61",
+      "started_at": "2026-09-29T05:54:40.322267Z",
+      "ended_at": "2026-09-29T05:54:43.609092Z",
+      "outcome": "succeeded",
+      "error_category": null,
+      "error_message": null,
+      "output_prefix": "attempts/3e5c1166-48a3-435e-9980-3a34ca926a41/0f02c1cc-2e52-4c4c-b807-4770de322678/"
+    }
+  ]
+}

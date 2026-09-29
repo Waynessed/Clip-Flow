@@ -17,3 +17,13 @@ Executed: tool inventory, docker info, remote inventory (empty), npm version que
 No end-to-end success claimed yet. No commit yet. Next: resolve dependencies, compile, start, run the real demo and browser smoke test.
 
 Build checkpoint: Go compilation via container go test ./... succeeded before integration tests were added (packages had no tests then). npm ci and npm run build succeeded after adding vite/client declarations and explicitly typing the request-key state as string. npm audit reported zero vulnerabilities. Full Compose build is still running; MinIO source compilation and FFmpeg package installation are the main initial costs. Browser Chromium was installed. The draft real-service tests and recovery scripts are present but unexecuted at this checkpoint.
+
+## CF-01 verified first demo — 2026-09-29 05:55 UTC
+
+Implementation basis: e82c287 (pushed to origin/master). Full Compose build started an empty PostgreSQL 18.3 database and MinIO source build. API schema migration and bucket creation succeeded; /readyz passed. Initial MinIO source build took 483 seconds; subsequent builds reuse it. Runtime FFmpeg/ffprobe is 5.1.9-0+deb12u1. MinIO source release resolves to Go pseudo-version v0.0.0-20250907161309-07c3a429bfed; upstream go-install embeds DEVELOPMENT.GOGET in --version, so the build instruction and source revision identify it.
+
+Executed ./scripts/demo.ps1 -SkipBootstrap: generated real 3-second 960x540 H.264/AAC input (547291 bytes), uploaded it twice with one key, verified the same job ID, observed success with one attempt. Job 3e5c1166-48a3-435e-9980-3a34ca926a41 produced an 854x480 H.264/AAC preview (196753 bytes, 3.019 seconds) and JPEG (19418 bytes). Real detail response preserved at docs/evidence/first-demo.json. Creation to publication was 3.478 seconds on the first job.
+
+Executed npm run test:e2e in web: one Playwright browser smoke test passed (4.4 seconds test, 8.5 seconds suite). It uploaded via the form, loaded preview video metadata, checked dimensions/duration, read generated metadata and repeated the upload. Screenshot was reviewed: no layout clipping at 1280 pixels. Actual frame playback will be added to strengthen the smoke assertion. Browser opening requested in Codex (panel queued). Working local demo is available at http://localhost:5173.
+
+Go compilation/cleanup tests passed; real-service integration tests were skipped in the plain Go container because TEST_DATABASE_URL was not set. No recovery success or benchmark evidence claimed yet. Next: execute isolated integration tests and recovery scripts, then benchmark.
